@@ -21,6 +21,7 @@ This repository holds test images of wine labels for evaluating Vivino's recogni
   "added_by": "patrick",
   "added_at": "2025-06-13T12:00:00Z"
 }
+```
 
 ## Usage
 
