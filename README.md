@@ -4,10 +4,10 @@ This repository holds test images of wine labels for evaluating Vivino's recogni
 
 ## Structure
 
-- `/images/`  Images used in test scenarios
-- `/metadata/labels.jsonl`  One JSON object per image, with metadata
-- `/metadata/schema.md`  Explanation of supported metadata fields
-- `/metadata/scenarios/`  Optional scenario sets for filtered testing
+- `/images/`                — Images used in test scenarios
+- `/metadata/labels.jsonl`  — One JSON object per image, with metadata
+- `/metadata/schema.md`     — Explanation of supported metadata fields
+- `/metadata/scenarios/`    — Optional scenario sets for filtered testing
 
 ## Example entry (JSONL)
 
