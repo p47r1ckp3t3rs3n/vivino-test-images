@@ -60,6 +60,13 @@ You’ll find results in:
 * `vivino-test-images/images/` → Downloaded label images
 * `vivino-test-images/metadata/labels_<timestamp>.jsonl` → Generated metadata
 
+**Note:** These files are generated locally. You must manually copy or upload them into this repository after generation:
+
+```bash
+mv path/to/output/images/* vivino-test-images/images/
+mv path/to/output/labels_<timestamp>.jsonl vivino-test-images/metadata/
+```
+
 ### Supported arguments
 
 * `--csv <path>`: Input CSV exported from DB with label verification data
