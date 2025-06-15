@@ -1,13 +1,13 @@
 # Vivino Test Label Dataset
 
-This repository holds test images of wine labels for evaluating Vivino's recognition systems. Each image is optionally annotated with optional metadata, such as expected vintage ID, OCR output, tags, and crop coordinates.
+This repository holds test images of wine labels for evaluating Vivino's recognition systems. Each image is optionally annotated with metadata such as expected vintage ID, OCR output, tags, and crop coordinates.
 
 ## Structure
 
-- `/images/`                — Images used in test scenarios
-- `/metadata/labels.jsonl`  — One JSON object per image, with metadata
-- `/metadata/schema.md`     — Explanation of supported metadata fields
-- `/metadata/scenarios/`    — Optional scenario sets for filtered testing
+* `/images/`                — Images used in test scenarios
+* `/metadata/labels.jsonl`  — One JSON object per image, with metadata
+* `/metadata/schema.md`     — Explanation of supported metadata fields
+* `/metadata/scenarios/`    — Optional scenario sets for filtered testing
 
 ## Example entry (JSONL)
 
@@ -27,12 +27,37 @@ This repository holds test images of wine labels for evaluating Vivino's recogni
 
 Used in conjunction with [`vivino-scan-tools`](https://github.com/p47r1ckp3t3rs3n/vivino-scan-tools) for:
 
-- Uploading test scans to API
-- Validating OCR and vintage matches
-- Comparing recognition performance across systems
+* Uploading test scans to API
+* Validating OCR and vintage matches
+* Comparing recognition performance across systems
 
 Run tooling scripts by referencing this repo’s `labels.jsonl` file and images:
 
 ```bash
 # Example:
-python upload_and_fetch.py --env testing --label clip
+python upload_and_fetch.py --env testing --label clip --labels-file metadata/labels.jsonl --inject-ocr --validate-vintage
+```
+
+## Ground Truth Generation
+
+To generate the dataset automatically from internal sources:
+
+Use `generate_groundtruth.py` from `vivino-scan-tools` with a CSV export or raw curl logs:
+
+```bash
+# From CSV only (downloads images)
+python scripts/generate_groundtruth.py --csv labels.csv --out-dir vivino-test-images
+
+# From curl logs only (metadata only)
+python scripts/generate_groundtruth.py --curls curl_logs.txt --out-dir vivino-test-images
+
+# From both
+python scripts/generate_groundtruth.py --csv labels.csv --curls curl_logs.txt --out-dir vivino-test-images
+```
+
+You’ll find results in:
+
+* `vivino-test-images/images/` → Downloaded label images
+* `vivino-test-images/metadata/labels_<timestamp>.jsonl` → Generated metadata
+
+This allows reproducible validation and evaluation of label scan performance across builds and backends.
