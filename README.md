@@ -60,4 +60,11 @@ You’ll find results in:
 * `vivino-test-images/images/` → Downloaded label images
 * `vivino-test-images/metadata/labels_<timestamp>.jsonl` → Generated metadata
 
+### Supported arguments
+
+* `--csv <path>`: Input CSV exported from DB with label verification data
+* `--curls <path>`: Input .txt file with raw curl commands
+* `--out-dir <path>`: Target folder for output (both metadata and images)
+* `--added-by <name>`: Tag entries with creator name (default: `patrick`)
+
 This allows reproducible validation and evaluation of label scan performance across builds and backends.
